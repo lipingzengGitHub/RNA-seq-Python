@@ -1,0 +1,18 @@
+name: rnaseq-pipeline
+channels:
+  - bioconda
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.10
+  - samtools
+  - hisat2
+  - htseq
+  - deeptools
+  - fastqc
+  - matplotlib
+  - seaborn
+  - pandas
+  - scikit-learn
+
+
