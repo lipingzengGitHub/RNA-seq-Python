@@ -99,6 +99,6 @@ DESeq2 handles normalization and dispersion estimation automatically
 Heatmaps show expression levels of all filtered DEGs
 
 ### Suggested Workflow
-1.	Run RNA-seq-ReadsCount.py to generate counts.txt
-2.	Use run-DEG-analysis.py to analyze DEGs and visualize heatmaps
+1.	Run `RNA-seq-ReadsCount.py` to generate counts.txt
+2.	Use `run-DEG-analysis.py` to analyze DEGs and visualize heatmaps
 
