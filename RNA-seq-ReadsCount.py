@@ -10,7 +10,6 @@ import shutil
 from sklearn.decomposition import PCA
 from sklearn.preprocessing import StandardScaler
 
-
 def print_usage_examples():
     print("""
 RNA-seq Pipeline Usage Examples:
@@ -28,19 +27,16 @@ To run only htseq-count and PCA (requires existing BAM files):
   python RNA-seq-ReadsCount.py -i ./fastq -o ./output -a annotation.gtf --count
 """)
 
-
 def check_dependencies():
     required_tools = {
         "hisat2": "conda install -c bioconda hisat2",
         "samtools": "conda install -c bioconda samtools",
         "htseq-count": "conda install -c bioconda htseq",
-        "bamCoverage": "conda install -c bioconda deeptools",
         "fastqc": "conda install -c bioconda fastqc"
     }
     for tool, install_cmd in required_tools.items():
         if not shutil.which(tool):
-            print(f"Required tool '{tool}' not found.")
-            print(f"Please install it with: {install_cmd}")
+            print(f"Required tool '{tool}' not found.\nPlease install it using:\n{install_cmd}\n")
             exit(1)
 
 def run_fastqc(fastq_dir, output_dir):
@@ -53,10 +49,8 @@ def run_fastqc(fastq_dir, output_dir):
     print("[FastQC] Done.")
 
 def run_hisat2(fastq_dir, output_dir, genome_index):
-    print("[HISAT2] Starting alignment, sorting, indexing, and BigWig generation...")
+    print("[HISAT2] Starting alignment, sorting and indexing...")
     os.makedirs(output_dir, exist_ok=True)
-    bigwig_dir = os.path.join(output_dir, "bigwig")
-    os.makedirs(bigwig_dir, exist_ok=True)
 
     for f in os.listdir(fastq_dir):
         if f.endswith('_1.fq.gz'):
@@ -64,19 +58,13 @@ def run_hisat2(fastq_dir, output_dir, genome_index):
             r2 = os.path.join(fastq_dir, f.replace('_1.fq.gz', '_2.fq.gz'))
             sample = f.replace('_1.fq.gz', '')
             sorted_bam = os.path.join(output_dir, f"{sample}_sorted.bam")
-            bigwig_file = os.path.join(bigwig_dir, f"{sample}.bw")
 
             if os.path.exists(r2):
                 print(f"[HISAT2] Aligning and sorting: {sample}")
                 align_cmd = f"hisat2 -p 4 -x {genome_index} -1 {r1} -2 {r2} | samtools view -bS - | samtools sort -o {sorted_bam}"
                 subprocess.run(align_cmd, shell=True, check=True)
                 subprocess.run(f"samtools index {sorted_bam}", shell=True, check=True)
-
-                print(f"[bamCoverage] Generating BigWig: {sample}.bw")
-                bw_cmd = f"bamCoverage -b {sorted_bam} -o {bigwig_file} --normalizeUsing CPM"
-                subprocess.run(bw_cmd, shell=True, check=True)
-
-    print("[HISAT2] Alignment and BigWig generation completed.")
+    print("[HISAT2] Alignment completed.")
 
 def count_reads_with_htseq(bam_dir, gff_file, output_dir):
     print("[HTSeq] Counting reads per gene...")
@@ -120,15 +108,21 @@ def merge_counts_and_plot(count_dir, output_dir):
     print(f"[PCA] PCA plot saved to {pca_file}")
 
 def main():
-    parser = argparse.ArgumentParser(description="RNA-seq Pipeline: FastQC → Alignment → Counts → PCA")
-    parser.add_argument("-i", "--input", required=True, help="Directory with FASTQ files")
+    parser = argparse.ArgumentParser(description="RNA-seq Pipeline: FastQC → Alignment → Counts → PCA", add_help=False)
+    parser.add_argument("-i", "--input", help="Directory with FASTQ files")
     parser.add_argument("-o", "--output", default="RNAseq_results", help="Output directory")
     parser.add_argument("-g", "--genome", help="HISAT2 genome index prefix")
     parser.add_argument("-a", "--gff", help="Gene annotation GTF/GFF file for htseq-count")
     parser.add_argument("--fastqc", action="store_true", help="Run FastQC")
     parser.add_argument("--align", action="store_true", help="Run HISAT2 alignment")
     parser.add_argument("--count", action="store_true", help="Run htseq-count and PCA")
+    parser.add_argument("-h", "--help", action="store_true", help="Show usage examples and help")
+
     args = parser.parse_args()
+
+    if not any([args.fastqc, args.align, args.count]) or args.help:
+        print_usage_examples()
+        return
 
     check_dependencies()
     os.makedirs(args.output, exist_ok=True)
@@ -155,4 +149,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
