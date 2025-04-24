@@ -71,6 +71,7 @@ conda install -c bioconda bioconductor-deseq2
 Python environment:
 conda install -c conda-forge rpy2
 conda install pandas matplotlib seaborn scikit-learn
+
 Or with pip:
 pip install rpy2 pandas matplotlib seaborn scikit-learn
 
