@@ -65,11 +65,7 @@ python run-DEG-analysis.py counts.txt control1,control2,control3 case1_rep1,case
 First group is always the control. Others are test groups. Comma-separated within a group, space-separated between groups.
 
 ###  Requirements
-R packages:
-# From within R
-install.packages("BiocManager")
-BiocManager::install("DESeq2")
-Or using conda:
+Install R packages using conda:
 conda install -c bioconda bioconductor-deseq2
 
 Python environment:
