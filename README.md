@@ -91,11 +91,15 @@ python run-DEG-analysis.py counts.txt WT_1,WT_2,WT_3 KO1_1,KO1_2,KO1_3 KO2_1,KO2
 All results are saved in the DEG_results/ folder:
 
 
-File	Description
+###File	Description
 *_filtered.csv	Filtered DEGs with padj < 0.05 and `
+
 *_unfiltered.csv	All DESeq2 results
+
 *_heatmap.png	Heatmap of all filtered DEGs
+
 summary_all_DEG.csv	Combined results from all group comparisons
+
 summary_filtered_DEG.csv	Combined filtered DEGs from all comparisons
 
 ###  Notes
