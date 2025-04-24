@@ -42,9 +42,7 @@ HISAT2-indexed reference genome (with .ht2 files)
 Gene annotation file (GTF or GFF3)
 
 ### How to Run
-python RNA-seq-ReadsCount.py -i Fastq -o hisat-count-dir \
-  -g /path/to/hisat2_index_prefix \
-  -a /path/to/annotation.gtf
+python RNA-seq-ReadsCount.py -i Fastq -o hisat-count-dir -g /path/to/hisat2_index_prefix -a /path/to/annotation.gtf
 
 ### Output
 FastQC_reports/: Quality reports per FASTQ
@@ -79,6 +77,7 @@ conda install -c conda-forge rpy2
 conda install pandas matplotlib seaborn scikit-learn
 Or with pip:
 pip install rpy2 pandas matplotlib seaborn scikit-learn
+
 ⚠️ Make sure Python and R versions are compatible with rpy2
 
 ### Input
