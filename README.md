@@ -51,7 +51,7 @@ htseq_counts/: Gene-level read count files
 merged_counts_matrix.csv: Combined count matrix
 pca_plot.png: Optional PCA clustering plot
 
-📌 Part 2: Differential Expression Analysis (DEG)
+## 📌 Part 2: Differential Expression Analysis (DEG)
 Script: run-DEG-analysis.py
 This script performs differential gene expression analysis using DESeq2 via R, then generates summary files and heatmaps.
 
