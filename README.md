@@ -45,9 +45,13 @@ Gene annotation file (GTF or GFF3)
 
 ### Output Files
 FastQC_reports/: Quality reports per FASTQ
+
 aligned_bam_files/: Aligned, sorted, and indexed BAM files
+
 htseq_counts/: Gene-level read count files
+
 merged_counts_matrix.csv: Combined count matrix
+
 pca_plot.png: Optional PCA clustering plot
 
 ## 📌 Part 2: Differential Expression Analysis (DEG)
@@ -76,14 +80,10 @@ python run-DEG-analysis.py counts.txt control1,control2,control3 case1_rep1,case
 
 •	All replicates are comma-separated
 
-### Features:
-Supports multiple test groups vs. a single control
-Filters DEGs using: padj < 0.05 and |log2FC| ≥ 1
-
 ### Output Files
 All results are saved in the DEG_results/ folder:
 
-*_filtered.csv	Filtered DEGs with padj < 0.05 and `
+*_filtered.csv	Filtered DEGs with padj < 0.05 and |log2FC| ≥ 1
 
 *_unfiltered.csv	All DESeq2 results
 
