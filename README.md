@@ -29,7 +29,9 @@ conda install -c bioconda htseq
 
 ### Python packages:
 pip install pandas scikit-learn matplotlib seaborn
+
 ⚠️ If in a managed system, use a virtual environment:
+
 python3 -m venv env
 source env/bin/activate
 pip install pandas scikit-learn matplotlib seaborn
