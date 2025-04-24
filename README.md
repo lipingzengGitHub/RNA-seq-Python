@@ -57,7 +57,8 @@ pca_plot.png: Optional PCA clustering plot
 ## 📌 Part 2: Differential Expression Analysis (DEG)
 
 **Script:** `run-DEG-analysis.py`
-This script performs differential gene expression analysis using DESeq2 via R, then generates summary files and heatmaps.
+
+This pipeline performs differential gene expression analysis using DESeq2 via R, then generates summary files and heatmaps.
 
 ### 🔧 Requirements
 
