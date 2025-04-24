@@ -10,6 +10,25 @@ import shutil
 from sklearn.decomposition import PCA
 from sklearn.preprocessing import StandardScaler
 
+
+def print_usage_examples():
+    print("""
+RNA-seq Pipeline Usage Examples:
+--------------------------------
+To run all steps (FastQC, HISAT2 alignment, htseq-count, BAM indexing, and PCA):
+  python RNA-seq-ReadsCount.py -i ./fastq -o ./output -g genome_index -a annotation.gtf --fastqc --align --count
+
+To run only FastQC and HISAT2 alignment:
+  python RNA-seq-ReadsCount.py -i ./fastq -o ./output -g genome_index --fastqc --align
+
+To run alignment, BAM sort & index, htseq-count and PCA (skip FastQC):
+  python RNA-seq-ReadsCount.py -i ./fastq -o ./output -g genome_index -a annotation.gtf --align --count
+
+To run only htseq-count and PCA (requires existing BAM files):
+  python RNA-seq-ReadsCount.py -i ./fastq -o ./output -a annotation.gtf --count
+""")
+
+
 def check_dependencies():
     required_tools = {
         "hisat2": "conda install -c bioconda hisat2",
