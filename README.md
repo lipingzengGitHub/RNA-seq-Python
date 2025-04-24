@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # 🧬 RNA-seq Bioinformatics Pipelines
 =======
 Part 1: RNA-seq Reads Count Pipeline
@@ -159,4 +158,3 @@ summary_filtered_DEG.csv	Combined filtered DEGs
 1.	Run RNA-seq-ReadsCount.py to generate counts.txt
 2.	Use run-DEG-analysis.py to analyze DEGs and visualize heatmaps
 
->>>>>>> aedbab0 (Save local changes before pulling)
