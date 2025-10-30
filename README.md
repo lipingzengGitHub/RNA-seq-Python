@@ -1,4 +1,4 @@
-# 🧬 RNA-seq Bioinformatics Pipelines
+#  RNA-seq Bioinformatics Pipelines
 
 This repository contains two Python-based RNA-seq analysis pipelines:
 
@@ -6,19 +6,19 @@ This repository contains two Python-based RNA-seq analysis pipelines:
 - **Part 2:** From read counts to differentially expressed genes (DEGs) using DESeq2 via R
 
 
-## 📌 Part 1: RNA-seq Reads Count Pipeline
+##  Part 1: RNA-seq Reads Count Pipeline
 
 **Script:** `RNA-seq-ReadsCount.py`  
 This pipeline processes **paired-end RNA-seq FASTQ files** to produce read count matrices using standard bioinformatics tools.
 
-### 🔄 Steps:
+### Steps:
 
 1. **Quality Control (FastQC)** – Checks raw FASTQ quality
 2. **Genome Alignment (HISAT2)** – Aligns reads to the reference genome
 3. **Read Counting (HTSeq-count)** – Counts reads mapped to annotated genes
 4. **(Optional)** PCA clustering analysis
 
-### 🔧 Requirements
+### Requirements
 
 ### Conda-installed tools:
 conda install -c bioconda fastqc
@@ -54,13 +54,14 @@ merged_counts_matrix.csv: Combined count matrix
 
 pca_plot.png: Optional PCA clustering plot
 
-## 📌 Part 2: Differential Expression Analysis (DEG)
+
+## Part 2: Differential Expression Analysis (DEG)
 
 **Script:** `run-DEG-analysis.py`
 
 This pipeline performs differential gene expression analysis using DESeq2 via R, then generates summary files and heatmaps.
 
-### 🔧 Requirements
+### Requirements
 
 ### Conda-installed tools:
 conda install -c bioconda bioconductor-deseq2
